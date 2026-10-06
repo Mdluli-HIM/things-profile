@@ -1,0 +1,212 @@
+.things-work {
+  padding: 0 var(--opening-gutter, 40px) 120px;
+  background: #fff;
+  scroll-margin-top: 40px;
+}
+
+.things-work-inner {
+  max-width: 1840px;
+  margin-inline: auto;
+}
+
+.things-work-intro {
+  padding-bottom: 50px;
+}
+
+.things-work-intro h2 {
+  margin: 0;
+  font-size: clamp(56px, 6.4vw, 124px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+}
+
+.things-work-intro > p {
+  margin: 30px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #727272;
+}
+
+.things-work-list {
+  border-top: 1px solid rgba(16, 16, 16, 0.1);
+}
+
+.things-work-project {
+  border-bottom: 1px solid rgba(16, 16, 16, 0.1);
+}
+
+.things-work-row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(160px, 260px)
+    minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 210px;
+  padding-block: 60px;
+  color: #101010;
+  text-decoration: none;
+}
+
+.things-work-title {
+  margin: 0;
+  font-size: clamp(24px, 1.6vw, 30px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.things-work-services {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #7a7a7a;
+}
+
+.things-work-meta {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #727272;
+}
+
+.things-work-meta p {
+  margin: 0;
+}
+
+.things-work-meta p + p {
+  margin-top: 3px;
+}
+
+.things-work-thumbnail {
+  position: relative;
+  justify-self: end;
+  width: 120px;
+  height: 88px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #f3f3f3;
+}
+
+.things-work-thumbnail img {
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out, ease);
+}
+
+.things-work-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 12px;
+  color: var(--things-brand-red, #d61415);
+}
+
+.things-work-row--upcoming .things-work-title {
+  color: #727272;
+}
+
+.things-work-row:focus-visible .things-work-title {
+  color: var(--things-brand-blue, #0a23fc);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.things-work-row:hover .things-work-title {
+    color: var(--things-brand-blue, #0a23fc);
+  }
+
+  a.things-work-row:hover .things-work-thumbnail img {
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 767px) {
+  .things-work {
+    padding-bottom: 80px;
+  }
+
+  .things-work-intro {
+    padding-bottom: 36px;
+  }
+
+  .things-work-intro > p {
+    margin-top: 24px;
+    max-width: 320px;
+  }
+
+  .things-work-row {
+    grid-template-columns: minmax(0, 1fr) 88px;
+    gap: 12px 20px;
+    min-height: 180px;
+    padding-block: 36px;
+  }
+
+  .things-work-summary {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .things-work-meta {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .things-work-thumbnail {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 88px;
+    height: 66px;
+  }
+
+  .things-work-title {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-work-thumbnail img {
+    transition: none;
+  }
+
+  a.things-work-row:hover .things-work-thumbnail img {
+    transform: none;
+  }
+}
+
+/* Alternating brand hover */
+.things-work-title {
+  transition: color 0.25s ease;
+}
+
+@keyframes things-work-colour-shift {
+  from {
+    color: var(--things-brand-blue, #0a23fc);
+  }
+  to {
+    color: var(--things-brand-red, #d61415);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.things-work-row:hover .things-work-title {
+    animation: things-work-colour-shift 1.8s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-work-title {
+    transition: none;
+  }
+
+  a.things-work-row:hover .things-work-title {
+    animation: none;
+    color: var(--things-brand-blue, #0a23fc);
+  }
+}
+
+/* Things Work gallery link */
+.things-work-gallery-link { display: inline-flex; gap: 8px; margin-top: 18px; font-size: 12px; color: inherit; text-decoration: underline; text-underline-offset: 5px; transition: color .2s ease; }
+.things-work-gallery-link:focus-visible { outline: 2px solid var(--things-brand-blue, #0a23fc); outline-offset: 5px; }
+@media (hover: hover) { .things-work-gallery-link:hover { color: var(--things-brand-blue, #0a23fc); } }

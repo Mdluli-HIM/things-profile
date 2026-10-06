@@ -1,0 +1,121 @@
+.things-services {
+  --services-accent: #d03740;
+  padding: 80px var(--page-padding) 100px;
+  background: #f5f5f5;
+  scroll-margin-top: 32px;
+}
+
+.things-services-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.things-services-intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.things-services-intro h2,
+.things-services-intro p {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+.things-services-intro p {
+  color: #626262;
+  text-align: right;
+}
+
+.things-service {
+  display: grid;
+  gap: 32px;
+  padding-block: 40px;
+  border-top: 1px solid rgba(16, 16, 16, 0.13);
+}
+
+.things-service:last-child {
+  border-bottom: 1px solid rgba(16, 16, 16, 0.13);
+}
+
+.things-service-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.things-service-number {
+  color: var(--services-accent);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.things-service-heading h3 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.things-service-content {
+  width: 100%;
+  max-width: 410px;
+}
+
+.things-service-capabilities {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  text-transform: uppercase;
+}
+
+.things-service-description {
+  margin: 30px 0 0;
+  color: #5d5d5d;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .things-services {
+    padding-top: 96px;
+    padding-bottom: 120px;
+  }
+
+  .things-service {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    min-height: 350px;
+    padding-block: 64px;
+  }
+
+  .things-service-heading h3 {
+    font-size: clamp(28px, 2.05vw, 32px);
+  }
+
+  .things-service-description {
+    margin-top: 44px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .things-services {
+    padding-top: 120px;
+    padding-bottom: 160px;
+  }
+}

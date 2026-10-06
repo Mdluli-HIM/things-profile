@@ -1,0 +1,42 @@
+.things-statement {
+  padding:
+    clamp(140px, 17vw, 320px)
+    var(--opening-gutter, 40px)
+    clamp(120px, 12vw, 230px);
+  background: #fff;
+}
+
+.things-statement-heading {
+  max-width: 1840px;
+  margin: 0 auto;
+  color: #101010;
+  font-size: clamp(32px, 3.2vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.things-statement-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.things-statement-word[data-tone="red"] {
+  color: var(--things-brand-red, #d61415);
+}
+
+.things-statement-word[data-tone="blue"] {
+  color: var(--things-brand-blue, #0a23fc);
+}
+
+@media (max-width: 599px) {
+  .things-statement {
+    padding-block: 120px 100px;
+  }
+
+  .things-statement-heading {
+    font-size: clamp(28px, 6.8vw, 40px);
+    line-height: 1.12;
+  }
+}

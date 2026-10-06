@@ -1,0 +1,343 @@
+:root {
+  --opening-gutter: clamp(16px, 2.2vw, 40px);
+  --opening-header-height: 94px;
+}
+
+.things-header-shell {
+  height: var(--opening-header-height);
+  padding: 24px var(--opening-gutter) 0;
+  background: #ffffff;
+}
+
+.things-header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding-inline: 20px;
+  border-radius: 6px;
+  background: #f3f3f3;
+}
+
+.things-header-panel .wordmark {
+  font-size: 27px;
+}
+
+.things-header-panel .wordmark > span {
+  font-size: 26px;
+}
+
+.things-menu-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}
+
+.things-menu-lines {
+  display: grid;
+  gap: 12px;
+  width: 32px;
+}
+
+.things-menu-lines > span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--foreground);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.things-menu-toggle:hover .things-menu-lines > span:first-child {
+  transform: translateX(-3px);
+}
+
+.things-menu-toggle:hover .things-menu-lines > span:last-child {
+  transform: translateX(3px);
+}
+
+.things-hero {
+  position: relative;
+  isolation: isolate;
+  height: calc(100svh - var(--opening-header-height));
+  min-height: 520px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.things-photo-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.things-photo {
+  position: absolute;
+  width: clamp(100px, 9.4vw, 210px);
+}
+
+.things-photo-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.things-photo-inner img {
+  object-fit: cover;
+}
+
+.things-photo--1 {
+  left: 22%;
+  top: 25%;
+}
+
+.things-photo--2 {
+  left: 68%;
+  top: 22%;
+  width: clamp(100px, 9.8vw, 220px);
+}
+
+.things-photo--3 {
+  left: 73.3%;
+  top: 52%;
+  width: clamp(100px, 10.3vw, 230px);
+}
+
+.things-photo--4 {
+  left: 21.2%;
+  top: 64%;
+  width: clamp(100px, 10.8vw, 240px);
+}
+
+.things-photo--5 {
+  left: 61.9%;
+  top: 69%;
+  width: clamp(100px, 11.2vw, 250px);
+}
+
+.things-hero-center {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 46%;
+  width: min(90%, 780px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.things-headline {
+  font-size: clamp(48px, 4vw, 78px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.things-headline-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.035em;
+}
+
+.things-headline-inner {
+  display: block;
+  white-space: nowrap;
+}
+
+.things-hero-cta {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+@media (min-width: 600px) and (max-width: 999px) {
+  .things-photo {
+    width: clamp(100px, 13vw, 150px);
+  }
+
+  .things-photo--1 {
+    left: 12%;
+    top: 18%;
+  }
+
+  .things-photo--2 {
+    left: auto;
+    right: 12%;
+    top: 14%;
+  }
+
+  .things-photo--3 {
+    left: auto;
+    right: 10%;
+    top: 64%;
+  }
+
+  .things-photo--4 {
+    left: 10%;
+    top: 73%;
+  }
+
+  .things-photo--5 {
+    left: auto;
+    right: 26%;
+    top: 82%;
+  }
+}
+
+@media (max-width: 599px) {
+  :root {
+    --opening-header-height: 76px;
+  }
+
+  .things-header-shell {
+    padding-top: 16px;
+  }
+
+  .things-header-panel {
+    height: 60px;
+    padding-inline: 14px;
+  }
+
+  .things-header-panel .wordmark {
+    font-size: 25px;
+  }
+
+  .things-menu-lines {
+    width: 26px;
+    gap: 10px;
+  }
+
+  .things-headline {
+    font-size: clamp(36px, 7vw, 44px);
+  }
+
+  .things-photo {
+    width: clamp(84px, 25vw, 110px);
+  }
+
+  .things-photo--1 {
+    left: 5%;
+    top: 12%;
+  }
+
+  .things-photo--2 {
+    left: auto;
+    right: 6%;
+    top: 8%;
+  }
+
+  .things-photo--3 {
+    left: auto;
+    right: 4%;
+    top: 65%;
+  }
+
+  .things-photo--4 {
+    left: 5%;
+    top: 76%;
+  }
+
+  .things-photo--5 {
+    left: 44%;
+    top: 86%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-menu-lines > span {
+    transition: none;
+  }
+}
+
+/* Things headline colours */
+.things-brand-word {
+  --things-logo-red: #d61415;
+  --things-logo-blue: #0a23fc;
+  color: #101010;
+  white-space: nowrap;
+}
+
+.things-brand-word .things-brand-red {
+  color: var(--things-logo-red);
+}
+
+.things-brand-word .things-brand-dot {
+  display: inline-block;
+  background-image: linear-gradient(
+    to bottom,
+    var(--things-logo-blue) 0%,
+    var(--things-logo-blue) 30%,
+    #101010 30%,
+    #101010 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Things floating header */
+.things-header-shell {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  transition: background-color .5s ease;
+}
+.things-header-shell .things-header-panel {
+  transition: background-color .5s ease, box-shadow .5s ease;
+}
+.things-header-shell[data-scrolled="true"] {
+  background: transparent;
+  pointer-events: none;
+}
+.things-header-shell[data-scrolled="true"] .things-header-panel {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+.things-header-shell[data-scrolled="true"] .things-header-panel > a,
+.things-header-shell[data-scrolled="true"] .things-header-panel > button {
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .things-header-shell,
+  .things-header-shell .things-header-panel {
+    transition: none;
+  }
+}
+/* End Things floating header */
+
+/* Things always-transparent navigation */
+.things-header-shell,
+.things-header-shell[data-scrolled],
+.things-header-shell .things-header-panel,
+.things-header-shell[data-scrolled] .things-header-panel {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+.things-header-shell .things-header-panel > a,
+.things-header-shell .things-header-panel > button {
+  pointer-events: auto;
+}
+/* End Things always-transparent navigation */
+
+/* Things white homepage */
+html:has(.things-hero),
+body:has(.things-hero) {
+  background: #ffffff;
+}
+body:has(.things-hero) .things-hero {
+  background: #ffffff;
+}
+/* End Things white homepage */

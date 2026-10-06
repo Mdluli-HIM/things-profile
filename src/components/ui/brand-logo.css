@@ -1,0 +1,21 @@
+.things-brand-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.things-brand-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+  max-width: 220px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 599px) {
+  .things-brand-logo {
+    height: 44px;
+    max-width: 190px;
+  }
+}

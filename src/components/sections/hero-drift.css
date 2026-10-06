@@ -1,0 +1,56 @@
+.things-photo-drift {
+  width: 100%;
+}
+
+@keyframes things-photo-gentle-drift {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--things-drift-x) * -1),
+      var(--things-drift-y),
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      var(--things-drift-x),
+      calc(var(--things-drift-y) * -1),
+      0
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .things-photo-drift {
+    --things-drift-x: 3px;
+    --things-drift-y: 6px;
+    animation: things-photo-gentle-drift 10s ease-in-out infinite;
+    will-change: transform;
+  }
+  .things-photo--1 .things-photo-drift {
+    animation-duration: 11s;
+    animation-delay: -2s;
+  }
+  .things-photo--2 .things-photo-drift {
+    animation-duration: 13s;
+    animation-delay: -7s;
+  }
+  .things-photo--3 .things-photo-drift {
+    animation-duration: 10s;
+    animation-delay: -4s;
+  }
+  .things-photo--4 .things-photo-drift {
+    animation-duration: 12s;
+    animation-delay: -9s;
+  }
+  .things-photo--5 .things-photo-drift {
+    animation-duration: 11.5s;
+    animation-delay: -6s;
+  }
+}
+
+@media (max-width: 599px) {
+  .things-photo-drift {
+    --things-drift-x: 2px;
+    --things-drift-y: 3px;
+  }
+}

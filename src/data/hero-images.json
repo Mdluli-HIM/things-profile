@@ -1,0 +1,22 @@
+[
+  {
+    "slot": 1,
+    "src": "/images/hero/hero-01.jpg",
+    "alt": ""
+  },
+  {
+    "slot": 2,
+    "src": "/images/hero/hero-02.jpg",
+    "alt": ""
+  },
+  {
+    "slot": 3,
+    "src": "/images/hero/hero-03.jpg",
+    "alt": ""
+  },
+  {
+    "slot": 4,
+    "src": "/images/hero/hero-04.jpg",
+    "alt": ""
+  }
+]

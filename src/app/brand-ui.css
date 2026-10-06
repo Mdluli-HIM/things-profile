@@ -1,0 +1,68 @@
+:root {
+  --things-brand-red: #d61415;
+  --things-brand-blue: #0a23fc;
+}
+
+/* Connect the headline to the shared brand colours. */
+.things-headline .things-brand-word {
+  --things-logo-red: var(--things-brand-red);
+  --things-logo-blue: var(--things-brand-blue);
+}
+
+/* Small red accents. */
+.things-services .things-service-number,
+.menu-links > :is(a, button) > span:first-child,
+.things-hero-cta svg,
+.project-form .text-link svg {
+  color: var(--things-brand-red);
+}
+
+/* Keep the existing hamburger movement. */
+.things-menu-toggle .things-menu-lines > span {
+  transition:
+    transform 0.35s var(--ease-out),
+    background-color 0.25s ease;
+}
+
+/* Keyboard focus across the site. */
+:is(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--things-brand-blue);
+  outline-offset: 5px;
+}
+
+.project-form :is(input, textarea, select):focus-visible {
+  border-color: var(--things-brand-blue);
+}
+
+/* Colour appears as people interact. */
+@media (hover: hover) and (pointer: fine) {
+  .things-menu-toggle:hover .things-menu-lines > span:first-child {
+    background-color: var(--things-brand-red);
+  }
+
+  .things-menu-toggle:hover .things-menu-lines > span:last-child {
+    background-color: var(--things-brand-blue);
+  }
+
+  .things-hero-cta:hover,
+  .things-hero-cta:hover svg,
+  .project-form .text-link:hover,
+  .project-form .text-link:hover svg,
+  .footer-bottom a:hover {
+    color: var(--things-brand-blue);
+  }
+
+  .menu-links > :is(a, button):hover > svg {
+    color: var(--things-brand-blue);
+  }
+
+  .site-footer .footer-cta:hover > svg {
+    color: var(--things-brand-red);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-menu-toggle .things-menu-lines > span {
+    transition: none;
+  }
+}
