@@ -172,3 +172,21 @@ dialog.things-menu-dialog::backdrop { background: #fff; }
   .things-menu-contact a { transition: none; }
   .things-menu-pages a:hover { transform: none; }
 }
+
+/* Things active menu styling */
+.things-menu-pages a[aria-current="page"],
+.things-menu-pages a[aria-current="page"]:hover {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 18px);
+  color: var(--things-brand-blue, #0a23fc);
+}
+.things-menu-pages a[aria-current="page"]::after {
+  content: "";
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--things-brand-red, #d61415);
+}
+/* End Things active menu styling */

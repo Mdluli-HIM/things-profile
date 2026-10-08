@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect as useMenuEffect, useState as useMenuState } from "react";
+import { usePathname as useMenuPathname } from "next/navigation";
 import Image from "next/image";
 import { studioContact } from "@/data/studio-contact";
 
@@ -13,13 +17,40 @@ const links = [
 ];
 
 export function MenuContent({ onClose }: { onClose: () => void }) {
+  /* Things current navigation */
+  const pathname = useMenuPathname();
+  const [menuHash, setMenuHash] = useMenuState("");
+  useMenuEffect(() => {
+    const update = () => setMenuHash(window.location.hash);
+    update();
+    window.addEventListener("hashchange", update);
+    window.addEventListener("popstate", update);
+    return () => {
+      window.removeEventListener("hashchange", update);
+      window.removeEventListener("popstate", update);
+    };
+  }, [pathname]);
+  function isCurrentMenuLink(href: string) {
+    if (!pathname) return false;
+    const currentPath = pathname.replace(/\/+$/, "") || "/";
+    const [route, fragment] = href.split("#");
+    const targetPath = route.replace(/\/+$/, "") || "/";
+    if (fragment) return currentPath === targetPath && menuHash === "#" + fragment;
+    if (targetPath === "/") {
+      const sectionActive = links.some(item => item.href.startsWith("/#") && menuHash === item.href.slice(1));
+      return currentPath === "/" && !sectionActive;
+    }
+    return currentPath === targetPath || currentPath.startsWith(targetPath + "/");
+  }
+  /* End Things current navigation */
+
   const photos: string[] = ["/images/menu/menu-01.jpg","/images/menu/menu-02.jpg"];
 
   return (
     <div className="things-menu-layout">
       <nav className="things-menu-pages" aria-label="Main navigation">
         {links.map(link => (
-          <a key={link.href} href={link.href} onClick={onClose}>
+          <a key={link.href} href={link.href} onClick={onClose} aria-current={isCurrentMenuLink(link.href) ? "page" : undefined}>
             {link.label}
           </a>
         ))}
