@@ -10,7 +10,7 @@ type HeaderProps = {
   openProject: () => void;
 };
 
-export function Header({ openMenu }: HeaderProps) {
+export function Header(_props: HeaderProps) {
   /* Things scrolling header */
   const [scrolled, setScrolled] = useHeaderState(false);
 
@@ -40,18 +40,14 @@ export function Header({ openMenu }: HeaderProps) {
       <div className="things-header-panel">
         <Link href="/" className="things-brand-link" aria-label="Things home"><BrandLogo /></Link>
 
-        <button
-          type="button"
-          className="things-menu-toggle"
-          onClick={openMenu}
-          aria-label="Open navigation menu"
-          aria-haspopup="dialog"
-        >
-          <span className="things-menu-lines" aria-hidden="true">
-            <span />
-            <span />
-          </span>
-        </button>
+        <nav className="things-header-nav" aria-label="Main navigation">
+          <Link href="/#work">Work</Link>
+          <Link href="/projects/design">Archived</Link>
+          <Link href="/#studio">About</Link>
+          <Link href="/#contact" className="things-header-contact">
+            Contacts
+          </Link>
+        </nav>
       </div>
     </header>
   );

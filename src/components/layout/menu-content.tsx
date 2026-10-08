@@ -2,8 +2,12 @@
 
 import { useEffect as useMenuEffect, useState as useMenuState } from "react";
 import { usePathname as useMenuPathname } from "next/navigation";
-import Image from "next/image";
+
 import { studioContact } from "@/data/studio-contact";
+
+
+
+
 
 import "./menu-content.css";
 
@@ -44,19 +48,21 @@ export function MenuContent({ onClose }: { onClose: () => void }) {
   }
   /* End Things current navigation */
 
-  const photos: string[] = ["/images/menu/menu-01.jpg","/images/menu/menu-02.jpg"];
+
 
   return (
     <div className="things-menu-layout">
-      <nav className="things-menu-pages" aria-label="Main navigation">
-        {links.map(link => (
-          <a key={link.href} href={link.href} onClick={onClose} aria-current={isCurrentMenuLink(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        ))}
-      </nav>
+      <div className="things-menu-primary">
+        <p className="things-menu-label">Independent digital studio</p>
+        <nav className="things-menu-pages" aria-label="Main navigation">
+          {links.map(link => (
+            <a key={link.href} href={link.href} onClick={onClose}
+              aria-current={isCurrentMenuLink(link.href) ? "page" : undefined}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-      <div className="things-menu-aside">
         <div className="things-menu-contact">
           {studioContact.email && (
             <a href={"mailto:" + studioContact.email}>
@@ -82,18 +88,12 @@ export function MenuContent({ onClose }: { onClose: () => void }) {
           )}
           <p>Cape Town, South Africa.<br />Working worldwide.</p>
         </div>
-
-        {photos.length > 0 && (
-          <div className="things-menu-images" aria-hidden="true">
-            {photos.map((src, index) => (
-              <div className="things-menu-image" key={src + index}>
-                <Image src={src} alt="" fill
-                  sizes="(max-width: 767px) 120px, 160px" />
-              </div>
-            ))}
-          </div>
-        )}
       </div>
+      <aside className="things-menu-note" aria-label="Studio focus">
+        <span>Digital products.</span>
+        <span>Distinctive brands.</span>
+        <span>Clear experiences.</span>
+      </aside>
     </div>
   );
 }

@@ -1,0 +1,429 @@
+html:has(.things-development-page),
+body:has(.things-development-page) {
+  background: #050505;
+}
+
+.things-development-page {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  min-height: 540px;
+  overflow: hidden;
+  padding: 0;
+  background: #050505;
+  color: #fff;
+}
+
+.things-development-page::before {
+  content: "DIGITAL";
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  font-size: clamp(100px, 20vw, 360px);
+  font-weight: 900;
+  line-height: .8;
+  letter-spacing: -.075em;
+  color: #363636;
+  pointer-events: none;
+}
+
+.things-development-page::after {
+  content: "DEVELOPMENT";
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  font-size: clamp(54px, 12vw, 230px);
+  font-weight: 900;
+  line-height: .85;
+  letter-spacing: -.075em;
+  color: #363636;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.things-dev-heading {
+  position: absolute;
+  top: 108px;
+  left: 32px;
+  z-index: 2;
+}
+
+.things-dev-heading h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.things-dev-heading > p,
+.things-dev-sidebar {
+  display: none;
+}
+
+.things-dev-back {
+  color: #999;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.things-dev-gallery {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  padding-top: 70px;
+}
+
+.things-dev-rail {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  min-width: 0;
+  padding: 75px 8vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 8vw;
+  scrollbar-width: none;
+}
+
+.things-dev-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.things-dev-card {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 clamp(280px, 29vw, 480px);
+  aspect-ratio: 16 / 10;
+  color: #fff;
+  text-decoration: none;
+  background: #202020;
+  scroll-snap-align: center;
+  transition: transform .55s cubic-bezier(.22,1,.36,1),
+              box-shadow .55s ease;
+}
+
+.things-dev-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.things-dev-card-media img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.things-dev-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  color: #aaa;
+}
+
+.things-dev-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 35%,
+    rgba(0,0,0,.75)
+  );
+}
+
+.things-dev-card-number {
+  position: absolute;
+  inset: 18px 20px auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  text-shadow: 0 1px 5px #000;
+}
+
+.things-dev-card-caption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+}
+
+.things-dev-card-caption h2 {
+  margin: 0 0 6px;
+  font-size: clamp(21px, 2vw, 32px);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+}
+
+.things-dev-card-caption p {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.5;
+  color: #d5d5d5;
+}
+
+.things-dev-card-caption > span {
+  display: none;
+}
+
+.things-dev-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 20px;
+  padding: 20px 32px 28px;
+}
+
+.things-dev-footer p,
+.things-dev-footer > span {
+  margin: 0;
+  color: #888;
+  font-size: 10px;
+}
+
+.things-dev-arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.things-dev-arrows button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #444;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.things-dev-empty {
+  color: #aaa;
+}
+
+.things-development-page :is(a, button, [tabindex]):focus-visible {
+  outline: 2px solid #a8b3ff;
+  outline-offset: 4px;
+}
+
+.things-dev-card:focus-visible {
+  transform: scale(1.1);
+  z-index: 3;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .things-dev-card:hover {
+    transform: scale(1.12);
+    z-index: 3;
+    box-shadow: 0 24px 60px rgba(0,0,0,.65);
+  }
+
+  .things-dev-back:hover { color: #fff; }
+  .things-dev-arrows button:hover { background: #252525; }
+}
+
+@media (max-width: 640px) {
+  
+
+  .things-dev-heading { left: 20px; }
+  .things-dev-card { flex-basis: 82vw; }
+  .things-dev-rail { gap: 18px; }
+  .things-dev-footer { padding-inline: 20px; }
+  .things-dev-footer > span { display: none; }
+
+  .things-development-page::before {
+    top: 34%;
+    font-size: 25vw;
+  }
+
+  .things-development-page::after {
+    top: 58%;
+    font-size: 12vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-dev-card { transition: none; }
+  .things-dev-card:hover,
+  .things-dev-card:focus-visible { transform: none; }
+}
+
+/* Shared header styling; continuous gallery */
+.things-development-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 10;
+}
+
+.things-development-page {
+  padding-top: var(--opening-header-height, 94px);
+}
+
+.things-dev-heading {
+  top: calc(var(--opening-header-height, 94px) + 24px);
+}
+
+.things-dev-rail {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+
+/* Development dark background logo and menu */
+.things-development-header .things-brand-logo {
+  filter: url("#things-dev-light-logo");
+}
+
+.things-development-header .things-menu-lines > span {
+  background: #fff !important;
+}
+
+.things-development-header .things-menu-toggle {
+  color: #fff;
+}
+/* End Development dark background logo and menu */
+
+/* Clean development gallery */
+.things-development-page::before,
+.things-development-page::after {
+  content: none;
+}
+
+.things-development-page,
+html:has(.things-development-page),
+body:has(.things-development-page) {
+  background: #080808;
+}
+
+.things-dev-gallery {
+  padding-top: 20px;
+}
+
+.things-dev-rail {
+  gap: 28px;
+  padding-block: 50px;
+}
+
+.things-dev-card {
+  flex-basis: clamp(280px, 30vw, 480px);
+  aspect-ratio: auto;
+  background: transparent;
+}
+
+.things-dev-card-media {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #181818;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.things-dev-card::after {
+  content: none;
+}
+
+.things-dev-card-number {
+  position: static;
+  padding: 0 0 12px;
+  color: #999;
+  font-size: 10px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.things-dev-card-caption {
+  position: static;
+  padding-top: 18px;
+}
+
+.things-dev-card-caption h2 {
+  margin-bottom: 7px;
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-transform: none;
+}
+
+.things-dev-card-caption p {
+  max-width: 42ch;
+  color: #999;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.things-dev-footer {
+  padding-inline: 32px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.things-dev-arrows button {
+  border-color: #333;
+  border-radius: 50%;
+}
+
+.things-dev-card:focus-visible {
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .things-dev-card:hover {
+    transform: translateY(-6px);
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .things-dev-card {
+    flex-basis: 82vw;
+  }
+
+  .things-dev-rail {
+    gap: 20px;
+    padding-block: 30px;
+  }
+
+  .things-dev-footer {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-dev-card:hover {
+    transform: none;
+  }
+}

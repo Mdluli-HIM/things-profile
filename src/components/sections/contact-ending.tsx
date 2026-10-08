@@ -32,6 +32,31 @@ export function ContactEnding({
 
     if (!section || !stage || !frame || !copy) return;
 
+    /* Hold contact artwork behind the footer */
+    const ending = section.closest<HTMLElement>(".things-ending");
+    if (!ending) return;
+
+    const header = document.querySelector<HTMLElement>(".things-header-shell");
+    const headerHeight = () => header?.getBoundingClientRect().height || 0;
+    const measureHeader = () => {
+      ending.style.setProperty("--ending-header-height", `${headerHeight()}px`);
+    };
+
+    measureHeader();
+    ScrollTrigger.addEventListener("refreshInit", measureHeader);
+
+    let resizeFrame = 0;
+    let previousHeight = headerHeight();
+    const observer = new ResizeObserver(() => {
+      const nextHeight = headerHeight();
+      if (Math.abs(nextHeight - previousHeight) < 1) return;
+      previousHeight = nextHeight;
+      measureHeader();
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+    if (header) observer.observe(header);
+
     const media = gsap.matchMedia();
     let active = true;
 
@@ -44,11 +69,22 @@ export function ContactEnding({
 
       const mobile = context.conditions.mobile;
 
+      ScrollTrigger.create({
+        trigger: section,
+        start: () => `top ${headerHeight()}px`,
+        endTrigger: ending,
+        end: "bottom bottom",
+        pin: stage,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      });
+
       const timeline = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: section,
-          start: "top top",
+          start: () => `top ${headerHeight()}px`,
           end: "bottom bottom",
           scrub: 1.1,
           invalidateOnRefresh: true
@@ -90,7 +126,11 @@ export function ContactEnding({
 
     return () => {
       active = false;
+      observer.disconnect();
+      cancelAnimationFrame(resizeFrame);
+      ScrollTrigger.removeEventListener("refreshInit", measureHeader);
       media.revert();
+      ending.style.removeProperty("--ending-header-height");
     };
   }, { scope: sectionRef });
 
@@ -201,9 +241,12 @@ export function ContactEnding({
 
     <div>
       <p className="things-ending-label">What we do</p>
-      <p>Strategy</p>
-      <p>Web & graphic design</p>
-      <p>Development</p>
+      <p>Web Applications</p>
+      <p>Mobile Applications</p>
+      <p>Design System</p>
+      <p>Websites</p>
+      <p>Brand</p>
+      <p>Creative Direction</p>
     </div>
   </div>
 

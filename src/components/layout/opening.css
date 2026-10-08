@@ -341,3 +341,250 @@ body:has(.things-hero) .things-hero {
   background: #ffffff;
 }
 /* End Things white homepage */
+
+/* Show the hero background without an overlay */
+.things-hero::before,
+.things-hero::after {
+  content: none !important;
+}
+
+/* Lower hero artwork */
+.things-hero {
+  background-color: #fff !important;
+  background-position: center calc(50% + clamp(160px, 22vh, 280px)) !important;
+  background-repeat: no-repeat !important;
+}
+
+@media (max-width: 767px) {
+  .things-hero {
+    background-position: center calc(50% + 140px) !important;
+  }
+}
+
+
+/* Hero artwork overflowing into Studio */
+.things-hero {
+  position: relative;
+  overflow: visible !important;
+  isolation: isolate;
+  background-image: none !important;
+  background-color: #fff !important;
+}
+
+.things-hero-artwork {
+  position: absolute;
+  top: clamp(160px, 22vh, 280px);
+  left: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom, #000 calc(100% - 120px), transparent
+  );
+  mask-image: linear-gradient(
+    to bottom, #000 calc(100% - 120px), transparent
+  );
+}
+
+.things-hero-center {
+  position: relative;
+  z-index: 2;
+}
+
+#studio[data-hero-art-following="true"] {
+  position: relative;
+  background: transparent !important;
+  border-top: 0;
+  padding-top: calc(var(--hero-art-spill, 0px) + 96px);
+}
+
+@media (max-width: 767px) {
+  .things-hero-artwork {
+    top: 140px;
+  }
+
+  #studio[data-hero-art-following="true"] {
+    padding-top: calc(var(--hero-art-spill, 0px) + 56px);
+  }
+}
+
+/* Hide scrolling content behind the header */
+.things-header-shell,
+.things-header-shell[data-scrolled="true"],
+.things-header-panel {
+  background-color: #fff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Reposition hero artwork */
+.things-hero-artwork {
+  top: calc(clamp(160px, 22vh, 280px) - 60px);
+  left: clamp(24px, 4vw, 80px);
+}
+
+@media (max-width: 767px) {
+  .things-hero-artwork {
+    top: 110px;
+    left: 16px;
+  }
+}
+
+/* Balance hero text and artwork */
+.things-hero-center {
+  position: relative;
+  top: -40px;
+}
+
+.things-hero-artwork {
+  top: calc(clamp(160px, 22vh, 280px) - 10px);
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  .things-hero-center {
+    top: -24px;
+  }
+
+  .things-hero-artwork {
+    top: 140px;
+    left: 0;
+  }
+}
+
+/* Restore hero text position */
+.things-hero-center {
+  top: 0;
+}
+
+/* Restore the original hero text centering */
+.things-hero-center {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: min(90%, 780px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+/* Move artwork left of the centered headline */
+.things-hero-artwork {
+  left: -18%;
+}
+
+@media (max-width: 767px) {
+  .things-hero-artwork {
+    left: -24%;
+  }
+}
+
+/* Shared inline navigation */
+.things-header-shell .things-header-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 44px);
+  pointer-events: auto;
+}
+
+.things-header-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  color: #171717;
+  font-family: inherit;
+  font-size: clamp(14px, 1.25vw, 20px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.things-header-nav .things-header-contact {
+  padding: 12px 20px;
+  border-radius: 18px;
+  background: var(--things-brand-blue, #0a23fc);
+  color: #fff;
+}
+
+.things-header-nav a:focus-visible {
+  outline: 2px solid var(--things-brand-blue, #0a23fc);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .things-header-nav a:hover {
+    color: var(--things-brand-blue, #0a23fc);
+  }
+
+  .things-header-nav a:nth-child(2):hover {
+    color: var(--things-brand-red, #d61415);
+  }
+
+  .things-header-nav .things-header-contact:hover {
+    background: var(--things-brand-red, #d61415);
+    color: #fff;
+  }
+}
+
+@media (max-width: 767px) {
+  .things-header-shell {
+    height: auto;
+  }
+
+  .things-header-shell .things-header-panel {
+    height: auto;
+    min-height: 70px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+  }
+
+  .things-header-shell .things-header-nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .things-header-nav a {
+    font-size: 14px;
+  }
+
+  .things-header-nav .things-header-contact {
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-header-nav a {
+    transition: none;
+  }
+}
+
+/* Keep the original logo colours on the shared white navbar */
+.things-header-shell .things-brand-link,
+.things-header-shell .things-brand-logo {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.things-header-shell .things-brand-logo {
+  visibility: visible !important;
+}
+
+/* Restore original hero artwork position */
+.things-hero .things-hero-artwork {
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  .things-hero .things-hero-artwork {
+    left: 0;
+  }
+}

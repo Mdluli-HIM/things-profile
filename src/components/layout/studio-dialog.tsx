@@ -195,6 +195,7 @@ export function StudioDialog({ view, onClose }: DialogProps) {
           type="button"
           className="text-link"
           ref={closeRef}
+          aria-label="Close dialog"
           onClick={onClose}
         >
           Close <X size={17} />

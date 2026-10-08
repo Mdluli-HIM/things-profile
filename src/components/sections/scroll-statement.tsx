@@ -9,12 +9,16 @@ import "./scroll-statement.css";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const statement =
-  "Strategy, design and development that bring your brand to life. Online, in print and in the details that matter.";
+  "We design and build websites, web and mobile applications, and design systems. Shaping brands through a clear creative direction.";
 
 function toneForWord(word: string) {
   const clean = word.toLowerCase().replace(/[^a-z]/g, "");
-  if (clean === "design" || clean === "brand") return "red";
-  if (clean === "development") return "blue";
+  if (["design", "brands", "creative", "direction"].includes(clean)) {
+    return "red";
+  }
+  if (["websites", "web", "mobile", "applications", "systems"].includes(clean)) {
+    return "blue";
+  }
   return "ink";
 }
 

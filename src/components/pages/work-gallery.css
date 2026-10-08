@@ -120,3 +120,337 @@ body:has(.things-gallery-page) { overflow: hidden; }
   .things-lightbox-photo, .things-lightbox-close { transition: none; }
 }
 /* End Things gallery image viewer */
+
+/* White archive gallery */
+html:has(.things-gallery-page),
+body:has(.things-gallery-page),
+.things-gallery-page {
+  background: #fff !important;
+  color: #101010;
+}
+
+.things-gallery-page::before,
+.things-gallery-page::after {
+  content: none !important;
+}
+
+.things-gallery-help {
+  background: transparent;
+  color: #626262;
+}
+
+/* Consistent landscape archive frames */
+.things-gallery-tile {
+  overflow: hidden;
+  border-radius: 0;
+  background: #f5f5f5;
+}
+
+.things-gallery-tile img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* White archive image viewer */
+.things-gallery-lightbox.things-archive-viewer {
+  background: #fff;
+  color: #171717;
+}
+
+.things-archive-viewer::backdrop {
+  background: #fff;
+  animation: none;
+}
+
+.things-archive-viewer[data-closing="true"]::backdrop {
+  background: #fff;
+  animation: none;
+}
+
+.things-archive-viewer[open] {
+  display: block;
+  animation: things-archive-viewer-enter 280ms ease both;
+}
+
+.things-archive-viewer[data-closing="true"] {
+  animation: things-archive-viewer-exit 220ms ease both;
+  pointer-events: none;
+}
+
+.things-archive-viewer-layout {
+  display: grid;
+  grid-template-columns: 80px minmax(180px, 260px) minmax(0, 1fr);
+  gap: 24px;
+  height: 100%;
+  padding: 76px 48px 32px 16px;
+  box-sizing: border-box;
+}
+
+.things-archive-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 4px;
+}
+
+.things-archive-thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.things-archive-thumbnail {
+  position: relative;
+  flex: 0 0 auto;
+  width: 72px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: #f5f5f5;
+  opacity: .25;
+  cursor: pointer;
+  transition: opacity 180ms ease;
+}
+
+.things-archive-thumbnail img {
+  object-fit: cover;
+}
+
+.things-archive-thumbnail[aria-current="true"],
+.things-archive-thumbnail:hover,
+.things-archive-thumbnail:focus-visible {
+  opacity: 1;
+}
+
+.things-archive-thumbnail:focus-visible {
+  outline: 2px solid var(--things-brand-blue, #0a23fc);
+  outline-offset: 3px;
+}
+
+.things-archive-image-info {
+  align-self: center;
+}
+
+.things-archive-image-info h2 {
+  margin: 0;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.things-archive-image-info p {
+  margin: 4px 0 0;
+  color: #9299a5;
+  font-size: 15px;
+}
+
+.things-archive-preview-area {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.things-archive-preview {
+  position: relative;
+  margin: 0;
+  width: min(100%, 720px);
+  height: min(65dvh, 620px);
+  animation: things-archive-viewer-enter 300ms ease both;
+}
+
+.things-archive-preview img {
+  object-fit: contain;
+}
+
+.things-archive-viewer .things-lightbox-close {
+  top: 16px;
+  right: 20px;
+  color: #171717;
+  background: #fff;
+  border: 1px solid #c4c9d2;
+  border-radius: 15px;
+}
+
+.things-archive-viewer .things-lightbox-close:hover {
+  color: var(--things-brand-red, #d61415);
+}
+
+@keyframes things-archive-viewer-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes things-archive-viewer-exit {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@media (max-width: 767px) {
+  .things-archive-viewer-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) 72px;
+    gap: 16px;
+    padding: 76px 20px 20px;
+  }
+
+  .things-archive-image-info {
+    grid-row: 1;
+  }
+
+  .things-archive-preview-area {
+    grid-row: 2;
+  }
+
+  .things-archive-preview {
+    width: 100%;
+    height: 100%;
+  }
+
+  .things-archive-thumbnails {
+    grid-row: 3;
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-archive-viewer[open],
+  .things-archive-viewer[data-closing="true"],
+  .things-archive-preview {
+    animation: none;
+  }
+
+  .things-archive-thumbnail {
+    transition: none;
+  }
+}
+
+/* Give the archive viewer the full viewport */
+dialog.things-gallery-lightbox.things-archive-viewer[open] {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .things-archive-viewer-layout {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .things-archive-thumbnails {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 16px;
+    width: 80px;
+    margin: 0;
+    padding: 32px 4px;
+    gap: 64px;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  .things-archive-image-info {
+    position: absolute;
+    top: 50%;
+    left: 118px;
+    width: clamp(180px, 18vw, 280px);
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .things-archive-preview-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(40vw, 720px);
+    height: 65dvh;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+  }
+
+  .things-archive-preview {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .things-archive-preview img {
+    object-fit: contain;
+  }
+}
+
+.things-archive-viewer .things-lightbox-close {
+  z-index: 10;
+}
+
+/* Allow the first and last thumbnails to center too */
+@media (min-width: 768px) {
+  .things-archive-thumbnails {
+    padding-top: calc(50dvh - 30px);
+    padding-bottom: calc(50dvh - 30px);
+    scroll-behavior: auto;
+    overflow-anchor: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .things-archive-thumbnails {
+    padding-inline: calc((100vw - 40px) / 2 - 36px);
+    scroll-behavior: auto;
+    overflow-anchor: none;
+  }
+}
+
+/* Endless thumbnail rail: selected image stays in the middle */
+.things-archive-viewer .things-archive-thumbnails {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  touch-action: none;
+}
+
+.things-archive-viewer .things-archive-thumbnail {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: 4px;
+  width: 72px;
+  height: 60px;
+  margin: 0;
+  opacity: 1;
+  transition: none;
+}
+
+@media (max-width: 767px) {
+  .things-archive-viewer .things-archive-thumbnails {
+    position: relative;
+    width: 100%;
+    height: 72px;
+  }
+
+  .things-archive-viewer .things-archive-thumbnail {
+    left: calc(50% - 36px);
+    top: 6px;
+  }
+}

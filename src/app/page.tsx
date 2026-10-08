@@ -69,9 +69,9 @@ export default function Home() {
           </div>
         </section>
 
-        <Services />
-        <ScrollStatement />
         <SelectedWork />
+        <ScrollStatement />
+        <Services />
       </main>
 
       <ContactEnding openProject={openProject} />

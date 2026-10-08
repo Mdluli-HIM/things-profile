@@ -1,25 +1,42 @@
 "use client";
 
-import "./hero-drift.css";
-import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
-import imageData from "@/data/hero-images.json";
 
 gsap.registerPlugin(useGSAP);
 
-type HeroImage = {
-  slot: number;
-  src: string;
-  alt: string;
-};
-
-const images = (imageData as HeroImage[]).slice(0, 5);
-
 export function Hero({ openProject }: { openProject: () => void }) {
   const ref = useRef<HTMLElement>(null);
+
+
+  useEffect(() => {
+    const section = ref.current;
+    const artwork = section?.querySelector<HTMLImageElement>(".things-hero-artwork");
+    if (!section || !artwork) return;
+
+    const measure = () => {
+      const spill = Math.max(0,
+        artwork.getBoundingClientRect().bottom -
+        section.getBoundingClientRect().bottom);
+      section.style.setProperty("--hero-art-spill", spill + "px");
+      section.nextElementSibling?.setAttribute("data-hero-art-following", "true");
+      (section.nextElementSibling as HTMLElement | null)
+        ?.style.setProperty("--hero-art-spill", spill + "px");
+    };
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(section);
+    observer.observe(artwork);
+    artwork.addEventListener("load", measure);
+    measure();
+
+    return () => {
+      observer.disconnect();
+      artwork.removeEventListener("load", measure);
+    };
+  }, []);
 
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -33,17 +50,6 @@ export function Hero({ openProject }: { openProject: () => void }) {
         clearProps: "transform"
       });
 
-      gsap.from(".things-photo-inner", {
-        opacity: 0,
-        scale: 1.05,
-        y: 14,
-        duration: 0.9,
-        stagger: 0.08,
-        delay: 0.15,
-        ease: "power2.out",
-        clearProps: "opacity,transform"
-      });
-
       gsap.from(".things-hero-cta", {
         opacity: 0,
         y: 8,
@@ -53,59 +59,6 @@ export function Hero({ openProject }: { openProject: () => void }) {
       });
     });
 
-    media.add(
-      "(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)",
-      () => {
-        const section = ref.current;
-
-        if (!section) return;
-
-        const movers = Array.from(
-          section.querySelectorAll<HTMLElement>(".things-photo")
-        ).map(element => ({
-          depth: Number(element.dataset.depth) || 8,
-          x: gsap.quickTo(element, "x", {
-            duration: 1,
-            ease: "power2.out"
-          }),
-          y: gsap.quickTo(element, "y", {
-            duration: 1,
-            ease: "power2.out"
-          })
-        }));
-
-        const move = (event: PointerEvent) => {
-          const bounds = section.getBoundingClientRect();
-
-          const x =
-            ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-
-          const y =
-            ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-
-          movers.forEach(mover => {
-            mover.x(x * mover.depth);
-            mover.y(y * mover.depth);
-          });
-        };
-
-        const reset = () => {
-          movers.forEach(mover => {
-            mover.x(0);
-            mover.y(0);
-          });
-        };
-
-        section.addEventListener("pointermove", move);
-        section.addEventListener("pointerleave", reset);
-
-        return () => {
-          section.removeEventListener("pointermove", move);
-          section.removeEventListener("pointerleave", reset);
-        };
-      }
-    );
-
     return () => media.revert();
   }, { scope: ref });
 
@@ -114,34 +67,24 @@ export function Hero({ openProject }: { openProject: () => void }) {
       className="things-hero"
       ref={ref}
       aria-labelledby="hero-heading"
+      style={{
+        backgroundImage: 'url("/images/hero/hero-background.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
     >
-      <div className="things-photo-field">
-        {images.map(image => (
-          <div
-            key={image.slot}
-            className={"things-photo things-photo--" + image.slot}
-            data-depth={2 + image.slot * 0.5}
-          >
-            <div className="things-photo-drift">
-<div className="things-photo-inner" style={{ position: "relative", width: "100%", aspectRatio: "8 / 5" }}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 599px) 110px, (max-width: 999px) 150px, 240px"
-                preload={image.slot === 1}
-              />
-            </div>
-</div>
-          </div>
-        ))}
-      </div>
-
+      <img className="things-hero-artwork" src="/images/hero/hero-background.jpg" alt="" aria-hidden="true" />
       <div className="things-hero-center">
         <h1 id="hero-heading" className="things-headline">
           <span className="things-headline-line">
             <span className="things-headline-inner">
-              Digital <span className="things-brand-word"><span className="things-brand-red">t</span>h<span className="things-brand-dot">i</span>ng<span className="things-brand-red">s</span></span>.
+              Digital{" "}
+              <span className="things-brand-word">
+                <span className="things-brand-red">t</span>h
+                <span className="things-brand-dot">i</span>ng
+                <span className="things-brand-red">s</span>
+              </span>.
             </span>
           </span>
 
@@ -152,11 +95,8 @@ export function Hero({ openProject }: { openProject: () => void }) {
           </span>
         </h1>
 
-        <button
-          type="button"
-          className="text-link things-hero-cta"
-          onClick={openProject}
-        >
+        <button type="button" className="text-link things-hero-cta"
+          onClick={openProject}>
           Start a project <ArrowUpRight size={15} />
         </button>
       </div>

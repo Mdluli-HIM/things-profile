@@ -429,3 +429,110 @@
   }
 }
 /* End footer contact layout */
+
+
+/* Keep the complete door scene behind the incoming footer */
+.things-ending {
+  position: relative;
+  isolation: isolate;
+}
+
+.things-ending .things-contact-scene {
+  position: relative;
+  z-index: 0;
+  overflow: visible;
+}
+
+.things-ending .things-contact-stage {
+  position: relative;
+  top: auto;
+  height: calc(100svh - var(--ending-header-height, 94px));
+  overflow: hidden;
+}
+
+.things-ending .things-ending-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .things-ending .things-contact-scene {
+    height: auto;
+  }
+
+  .things-ending .things-contact-stage {
+    min-height: 420px;
+  }
+}
+
+/* Seamless dark footer */
+.things-ending .things-ending-footer {
+  background: #0b0b0b;
+  color: #fff;
+  margin-top: 0;
+}
+
+.things-ending .things-ending-panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.things-ending .things-ending-cta {
+  color: #fff;
+}
+
+.things-ending .things-ending-red {
+  color: var(--things-brand-red, #d61415);
+}
+
+.things-ending .things-ending-blue {
+  color: var(--things-brand-blue, #0a23fc);
+}
+
+/* Keep the lower footer dark during hover and keyboard focus */
+.things-ending .things-ending-footer .things-ending-details,
+.things-ending .things-ending-footer .things-ending-details:hover,
+.things-ending .things-ending-footer .things-ending-details:focus-within {
+  --ending-details-ink: #f5f5f5;
+  --ending-details-muted: #b8b8b8;
+  background: transparent;
+}
+
+.things-ending .things-ending-columns,
+.things-ending .things-ending-details a {
+  color: #f5f5f5;
+}
+
+.things-ending .things-ending-columns .things-ending-label,
+.things-ending .things-ending-bottom {
+  color: #b8b8b8;
+}
+
+.things-ending .things-ending-footer a:focus-visible,
+.things-ending .things-ending-cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .things-ending .things-ending-footer .things-ending-details a[href]:hover {
+    color: #fff;
+    background: var(--things-brand-red, #d61415);
+  }
+}
+
+/* Custom footer background */
+.things-ending .things-ending-footer {
+  background-color: #0b0b0b;
+  background-image: url("/images/footer/footer-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.things-ending .things-ending-panel {
+  background: transparent;
+}

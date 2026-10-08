@@ -74,7 +74,7 @@ export function WorkGallery({ images }: { images: GalleryImage[] }) {
           {cells.map(cell => <button type="button" aria-label={"Open image: " + cell.photo.title} aria-haspopup="dialog" onClick={event => openImage(event, cell.photo)} key={cell.key} className="things-gallery-tile"
             style={{ position: "absolute", left: cell.x, top: cell.y, width: cell.width, height: cell.height }}>
             <Image src={cell.photo.src} alt="" fill draggable={false}
-              sizes="(max-width: 767px) 220px, 420px" loading="eager" />
+              sizes="(max-width: 767px) 160px, 220px" loading="eager" />
           </button>)}
         </div>
         {!images.length && <div className="things-gallery-empty"><p>New work is on its way.</p></div>}
@@ -84,7 +84,7 @@ export function WorkGallery({ images }: { images: GalleryImage[] }) {
         <span className="things-gallery-sr">. Use arrow keys to move. Shift and scroll moves sideways.</span>
       </p>
     </main>
-    {lightbox && <GalleryLightbox selection={lightbox} onClose={closeImage} />}
+    {lightbox && <GalleryLightbox selection={lightbox} images={images} onClose={closeImage} />}
     <StudioDialog view={view} onClose={() => setView(null)} openProject={openProject} />
   </>;
 }

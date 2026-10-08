@@ -73,6 +73,7 @@ export function CategoryLanding({ mode, covers }: { mode: "projects" | "services
 
   useEffect(() => () => transitionRef.current?.stop(), []);
   useEffect(() => { if (mode === "projects") router.prefetch("/projects/design"); }, [mode, router]);
+  useEffect(() => { if (mode === "projects") router.prefetch("/projects/development"); }, [mode, router]);
   const reset = useCallback(() => { transitionRef.current?.stop(); setOpening(null); }, []);
   useEffect(() => {
     if (!opening) return;
@@ -94,8 +95,8 @@ export function CategoryLanding({ mode, covers }: { mode: "projects" | "services
     setOpening(id);
     const completed = await transition.play(card, cards, Boolean(reduce));
     if (!completed) { if (!transition.busy) setOpening(null); return; }
-    if (mode === "projects" && id === "design") {
-      router.push("/projects/design");
+    if (mode === "projects" && (id === "design" || id === "development")) {
+      router.push("/projects/" + id);
     } else {
       transition.unlock();
       setOpening(null);
@@ -108,10 +109,10 @@ export function CategoryLanding({ mode, covers }: { mode: "projects" | "services
       <h1 className="things-category-page-title">{mode === "projects" ? "Projects" : "Services"}</h1>
       <div ref={gridRef} className="things-category-grid">
         {workCategories.map(category => {
-          const gallery = mode === "projects" && category.id === "design";
+          const gallery = mode === "projects" && (category.id === "design" || category.id === "development");
           const Card = gallery ? "a" : "button";
           return <Card key={category.id} type={gallery ? undefined : "button"}
-            href={gallery ? "/projects/design" : undefined} className="things-category-card"
+            href={gallery ? "/projects/" + category.id : undefined} className="things-category-card"
             data-category={category.id} data-photo={Boolean(covers[category.id])}
             data-selected={opening === category.id} aria-disabled={Boolean(opening)}
             aria-label={"Explore " + category.title + " " + mode} aria-haspopup={gallery ? undefined : "dialog"}
