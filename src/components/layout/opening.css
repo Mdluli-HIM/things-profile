@@ -588,3 +588,203 @@ body:has(.things-hero) .things-hero {
     left: 0;
   }
 }
+
+/* Mobile header and hero layout */
+@media (max-width: 767px) {
+  .things-header-shell {
+    height: auto;
+  }
+
+  .things-header-shell .things-header-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    height: auto;
+    gap: 8px;
+    padding: 12px 20px;
+  }
+
+  .things-header-shell .things-brand-link {
+    min-height: 40px;
+  }
+
+  .things-header-shell .things-brand-logo {
+    height: 38px;
+    width: auto;
+    max-width: 160px;
+  }
+
+  .things-header-shell .things-header-nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .things-header-shell .things-header-nav a {
+    min-height: 44px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .things-header-shell .things-header-contact {
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+
+  .things-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    height: auto !important;
+    min-height: 0 !important;
+    padding: clamp(48px, 9svh, 80px) 0 0;
+    align-content: start;
+    row-gap: 28px;
+  }
+
+  .things-hero .things-hero-center {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    inset: auto;
+    transform: none;
+    width: calc(100% - 32px);
+    max-width: 540px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .things-hero .things-headline {
+    margin: 0;
+    font-size: clamp(28px, 7.8vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+  }
+
+  .things-hero .things-hero-cta {
+    margin-top: 24px;
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .things-hero .things-hero-artwork {
+    position: relative;
+    grid-column: 1;
+    grid-row: 2;
+    inset: auto;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    transform: none;
+  }
+}
+
+/* Mobile hero: desktop-style spacing with lower artwork */
+@media (max-width: 767px) {
+  .things-hero {
+    position: relative;
+    display: block;
+    height: calc(100svh - 120px) !important;
+    min-height: 560px !important;
+    padding: 0;
+    overflow: visible !important;
+  }
+
+  .things-hero .things-hero-center {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 32px);
+    margin: 0;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+
+  .things-hero .things-headline {
+    font-size: clamp(28px, 7.8vw, 44px);
+    line-height: 1.14;
+    letter-spacing: -0.045em;
+  }
+
+  .things-hero .things-hero-ta {
+    margin-top: 28px;
+  }
+
+  .things-hero .things-hero-cta {
+    margin-top: 28px;
+    min-height: 44px;
+  }
+
+  .things-hero .things-hero-artwork {
+    position: absolute;
+    top: calc(42% + 48px);
+    left: 0;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    transform: none;
+    z-index: 0;
+  }
+}
+
+/* Mobile: clearer artwork and tighter spacing before Studio */
+@media (max-width: 767px) {
+  .things-hero {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: clamp(88px, 14svh, 120px) 0 0;
+    gap: 0;
+  }
+
+  .things-hero .things-hero-center {
+    position: relative;
+    order: 1;
+    inset: auto;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .things-hero .things-hero-artwork {
+    position: relative;
+    order: 2;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    transform: none;
+    filter: none;
+    opacity: 1;
+    -webkit-mask-image: linear-gradient(
+      to bottom, #000 calc(100% - 32px), transparent
+    );
+    mask-image: linear-gradient(
+      to bottom, #000 calc(100% - 32px), transparent
+    );
+  }
+
+  #studio[data-hero-art-following="true"] {
+    margin-top: 0;
+    padding-top: 24px;
+  }
+}
+
+/* Raise mobile hero headline and CTA */
+@media (max-width: 767px) {
+  .things-hero .things-hero-center {
+    transform: translateY(-24px);
+  }
+}

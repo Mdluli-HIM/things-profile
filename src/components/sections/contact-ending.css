@@ -536,3 +536,10 @@
 .things-ending .things-ending-panel {
   background: transparent;
 }
+
+/* Center the door artwork on mobile */
+@media (max-width: 767px) {
+  .things-ending .things-contact-image {
+    object-position: 50% 50%;
+  }
+}
