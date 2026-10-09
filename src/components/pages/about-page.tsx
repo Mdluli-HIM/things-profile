@@ -180,7 +180,24 @@ export function AboutPage() {
                     hidden={active !== index}
                     className="ta-service-description"
                   >
+                    {active === index && (
+                      <figure className="ta-mobile-service-image">
+                        <Image
+                          src={service.image}
+                          alt={service.alt}
+                          fill
+                          sizes="(max-width: 767px) 90vw, 1px"
+                        />
+                      </figure>
+                    )}
                     <p>{service.description}</p>
+                    <Link
+                      href="/#work"
+                      className="ta-text-link ta-mobile-service-link"
+                    >
+                      Explore our work
+                      <ArrowUpRight size={17} aria-hidden="true" />
+                    </Link>
                   </div>
                 </div>
               ))}

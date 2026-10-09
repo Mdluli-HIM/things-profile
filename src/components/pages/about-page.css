@@ -331,3 +331,44 @@
   .ta-service-image img { animation: none; }
   .ta-service-item button { transition: none; }
 }
+
+
+/* Keep the selected service image with its content on mobile */
+.things-about-page .ta-mobile-service-image,
+.things-about-page .ta-mobile-service-link {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .things-about-page .ta-service-visual {
+    display: none;
+  }
+
+  .things-about-page .ta-services-grid {
+    display: block;
+  }
+
+  .things-about-page .ta-service-description {
+    max-width: none;
+  }
+
+  .things-about-page .ta-mobile-service-image {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: clamp(180px, 36svh, 300px);
+    margin: 0 0 20px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .things-about-page .ta-mobile-service-image img {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .things-about-page .ta-mobile-service-link {
+    display: inline-flex;
+    margin-top: 16px;
+  }
+}
