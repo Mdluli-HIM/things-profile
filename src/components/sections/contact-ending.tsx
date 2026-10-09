@@ -211,15 +211,27 @@ export function ContactEnding({
               {studioContact.phone}
             </a>
           )}
+          <a
+            href={"https://wa.me/" + studioContact.phone.replace(/\D/g, "")}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with Things on WhatsApp"
+          >
+            WhatsApp ↗
+          </a>
         </div>
       )}
 
-      {studioContact.socials.some(social => social.label && social.url) && (
+      {studioContact.socials.some(social => social.label) && (
         <nav className="things-ending-socials" aria-label="Things social media">
           {studioContact.socials
-            .filter(social => social.label && social.url)
+            .filter(social => social.label)
             .map(social => (
-              <a key={social.url} href={social.url}
+              <a key={social.label} href={social.url || undefined}
+                role={social.url ? undefined : "link"}
+                aria-disabled={!social.url}
+                tabIndex={social.url ? undefined : -1}
+                className={social.url ? undefined : "things-social-disabled"}
                 target="_blank" rel="noopener noreferrer">
                 {social.label}<span aria-hidden="true"> ↗</span>
               </a>

@@ -1,0 +1,78 @@
+
+.things-contact-archive {
+  width: 100%;
+  padding: 0 0 12px;
+  background: #fff;
+}
+
+.things-contact-archive-stage {
+  position: relative;
+  height: clamp(270px, 29vw, 390px);
+  width: 100%;
+  overflow: hidden;
+  perspective: 1100px;
+  perspective-origin: 50% 45%;
+}
+
+.things-contact-archive-card {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 0;
+  overflow: hidden;
+  border-radius: 0;
+  background: #f5f5f5;
+  backface-visibility: hidden;
+  transform-origin: center;
+}
+
+.things-contact-archive-card img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.things-contact-archive-controls {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.things-contact-archive-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+}
+
+.things-contact-archive-controls button:focus-visible {
+  outline: 2px solid var(--things-brand-blue, #0a23fc);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .things-contact-archive-controls button:hover {
+    background: #f3f3f3;
+    color: var(--things-brand-blue, #0a23fc);
+  }
+}
+
+@media (max-width: 767px) {
+  .things-contact-archive-stage {
+    height: 250px;
+    perspective: 750px;
+  }
+
+  .things-contact-archive-card {
+    top: 20px;
+  }
+}

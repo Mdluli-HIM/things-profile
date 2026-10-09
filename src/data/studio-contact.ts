@@ -3,20 +3,20 @@ export const studioContact: {
   phone: string;
   socials: { label: string; url: string }[];
 } = {
-  email: "hello@things.example",
-  phone: "+27 00 000 0000",
+  email: "thingsinks@gmail.com",
+  phone: "+27 68 036 4445",
   socials: [
     {
       label: "Instagram",
-      url: "https://example.com/?social=instagram"
+      url: ""
     },
     {
       label: "LinkedIn",
-      url: "https://example.com/?social=linkedin"
+      url: ""
     },
     {
       label: "Behance",
-      url: "https://example.com/?social=behance"
+      url: ""
     }
   ]
 };

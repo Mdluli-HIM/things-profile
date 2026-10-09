@@ -43,8 +43,9 @@ export function Header(_props: HeaderProps) {
         <nav className="things-header-nav" aria-label="Main navigation">
           <Link href="/#work">Work</Link>
           <Link href="/projects/design">Archived</Link>
-          <Link href="/#studio">About</Link>
-          <Link href="/#contact" className="things-header-contact">
+          <Link href="/projects/graphics">Graphics</Link>
+          <Link href="/about">About us</Link>
+          <Link href="/contact" className="things-header-contact">
             Contacts
           </Link>
         </nav>

@@ -11,63 +11,52 @@ try {
 }
 
 async function sync() {
-  const folder = "public/images/work-gallery";
-  const detailsFile = "src/data/archive-details.json";
-
+  const folder = "public/images/graphics";
+  const detailsFile = "src/data/graphics-details.json";
   fs.mkdirSync(folder, { recursive: true });
 
-  const previous = fs.existsSync(detailsFile)
+  const details = fs.existsSync(detailsFile)
     ? JSON.parse(fs.readFileSync(detailsFile, "utf8"))
     : {};
 
   const names = fs.readdirSync(folder, { withFileTypes: true })
-    .filter(entry =>
-      entry.isFile() && /\.(jpe?g|png|webp|avif)$/i.test(entry.name)
-    )
+    .filter(entry => entry.isFile() && /\.(jpe?g|png|webp|avif)$/i.test(entry.name))
     .map(entry => entry.name)
     .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
 
   const photos = [];
-  const details = {};
 
-  for (const filename of names) {
-    const info = await sharp(path.join(folder, filename)).metadata();
+  for (const name of names) {
+    const info = await sharp(path.join(folder, name)).metadata();
     const swapped = [5, 6, 7, 8].includes(info.orientation);
     const width = swapped ? info.height : info.width;
     const height = swapped ? info.width : info.height;
 
     if (!width || !height) {
-      throw new Error("Could not read dimensions: " + filename);
+      throw new Error("Could not read dimensions: " + name);
     }
 
-    const src = "/images/work-gallery/" + encodeURIComponent(filename);
-    const saved = previous[src] || {};
-    const title = saved.title ?? path.parse(filename).name;
+    const src = "/images/graphics/" + encodeURIComponent(name);
+    const title = path.parse(name).name.replace(/[-_]+/g, " ");
 
     photos.push({ src, width, height, title });
 
-    details[src] = {
-      filename,
-      title,
-      year: saved.year ?? null,
-      category: saved.category ?? null
-    };
+    if (!details[src]) {
+      details[src] = {
+        title,
+        year: null,
+        category: "Graphic Design"
+      };
+    }
   }
 
   fs.mkdirSync("src/data", { recursive: true });
-
   fs.writeFileSync(
-    "src/data/work-gallery.json",
+    "src/data/graphics-gallery.json",
     JSON.stringify(photos, null, 2) + "\n"
   );
-
-  fs.writeFileSync(
-    detailsFile,
-    JSON.stringify(details, null, 2) + "\n"
-  );
-
-  console.log("Archive updated: " + photos.length + " images.");
-  console.log("Each entry now includes its exact filename.");
+  fs.writeFileSync(detailsFile, JSON.stringify(details, null, 2) + "\n");
+  console.log("Graphics gallery updated: " + photos.length + " images.");
 }
 
 sync().catch(error => {

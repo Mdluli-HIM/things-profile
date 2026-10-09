@@ -9,7 +9,13 @@ import { StudioDialog, type DialogView } from "@/components/layout/studio-dialog
 import { type GalleryCell, type GalleryImage } from "@/lib/infinite-gallery";
 import "./work-gallery.css";
 
-export function WorkGallery({ images }: { images: GalleryImage[] }) {
+export function WorkGallery({
+  images,
+  title = "Design projects"
+}: {
+  images: GalleryImage[];
+  title?: string;
+}) {
   const [view, setView] = useState<DialogView>(null);
   const [cells, setCells] = useState<GalleryCell[]>([]);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -66,9 +72,9 @@ export function WorkGallery({ images }: { images: GalleryImage[] }) {
       
     </div>
     <main id="main" className="things-gallery-page" aria-labelledby="things-gallery-heading">
-      <h1 id="things-gallery-heading" className="things-gallery-sr">Design projects</h1>
+      <h1 id="things-gallery-heading" className="things-gallery-sr">{title}</h1>
       <div ref={stageRef} className="things-gallery-stage" data-lenis-prevent data-empty={!images.length}
-        role="region" aria-label="Work gallery" aria-describedby="gallery-instructions"
+        role="region" aria-label={title} aria-describedby="gallery-instructions"
         tabIndex={images.length ? 0 : -1}>
         <div ref={planeRef} className="things-gallery-plane">
           {cells.map(cell => <button type="button" aria-label={"Open image: " + cell.photo.title} aria-haspopup="dialog" onClick={event => openImage(event, cell.photo)} key={cell.key} className="things-gallery-tile"

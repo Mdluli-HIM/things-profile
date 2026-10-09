@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import archiveDetails from "@/data/archive-details.json";
+import graphicsDetails from "@/data/graphics-details.json";
+const galleryDetails = { ...archiveDetails, ...graphicsDetails };
 import { useEffect, useRef, useState } from "react";
 import type { GalleryImage } from "@/lib/infinite-gallery";
 
@@ -147,7 +149,7 @@ export function GalleryLightbox({
   }
 
   const selectedIndex = images.findIndex(image => image.src === photo.src);
-  const details = (archiveDetails as Record<string, {
+  const details = (galleryDetails as Record<string, {
     title?: string;
     year?: number | string | null;
     category?: string | null;
@@ -185,7 +187,7 @@ export function GalleryLightbox({
 
       <div className="things-archive-viewer-layout">
         <nav className="things-archive-thumbnails"
-          aria-label="Choose an archive image">
+          aria-label="Choose an image">
           {Array.from({ length: 15 }, (_, slot) => {
             const offset = slot - 7;
             const position = cursor + offset;

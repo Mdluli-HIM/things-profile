@@ -788,3 +788,41 @@ body:has(.things-hero) .things-hero {
     transform: translateY(-24px);
   }
 }
+
+/* Graphics navigation: mobile spacing */
+@media (max-width: 767px) {
+  .things-header-shell .things-header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 14px;
+    row-gap: 4px;
+  }
+
+  .things-header-shell .things-header-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .things-header-shell .things-header-nav .things-header-contact {
+    padding: 10px 12px;
+  }
+}
+
+
+/* Social profiles are not available yet */
+a.things-social-disabled,
+a.things-social-disabled:hover,
+a.things-social-disabled:focus {
+  cursor: default;
+  opacity: 0.6;
+  color: inherit !important;
+  background: transparent !important;
+  text-decoration: none;
+  transform: none;
+}
+
+a.things-social-disabled > span[aria-hidden="true"] {
+  display: none;
+}
