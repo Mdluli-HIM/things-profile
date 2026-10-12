@@ -5,7 +5,7 @@ import "./globals.css";
 import "./brand-ui.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://things-olive-mu.vercel.app"),
+  metadataBase: new URL("https://www.thingsdesign.co.za"),
   title: "Things — Design & Development Studio",
   description:
     "Independent Cape Town studio working worldwide across strategy, design and development. We design digital things that matter.",
@@ -13,11 +13,13 @@ export const metadata: Metadata = {
     title: "Things — Design & Development Studio",
     description:
       "Independent Cape Town studio working worldwide across strategy, design and development. We design digital things that matter.",
-    url: "https://things-olive-mu.vercel.app",
+    url: "https://www.thingsdesign.co.za",
     siteName: "Things",
     images: [
       {
         url: "/images/brand/things-logo.png",
+        width: 2172,
+        height: 724,
         alt: "Things — Design & Development Studio",
       },
     ],
