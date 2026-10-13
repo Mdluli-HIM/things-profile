@@ -19,6 +19,11 @@ export const studioContact: {
       accessibleLabel: "Things on Instagram (opens in a new tab)"
     },
     {
+      label: "Pinterest",
+      url: "https://www.pinterest.com/thingsdesignstudio/",
+      accessibleLabel: "Things on Pinterest (opens in a new tab)"
+    },
+    {
       label: "LinkedIn",
       url: "https://www.linkedin.com/in/marcus-mdluli-aaa627443/",
       accessibleLabel: "Marcus Mdluli, founder of Things, on LinkedIn (opens in a new tab)"
