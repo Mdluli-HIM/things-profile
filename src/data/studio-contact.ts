@@ -15,7 +15,7 @@ export const studioContact: {
   socials: [
     {
       label: "Instagram",
-      url: "",
+      url: "https://www.instagram.com/hellothingsdesign.co.za/",
       accessibleLabel: "Things on Instagram (opens in a new tab)"
     },
     {
