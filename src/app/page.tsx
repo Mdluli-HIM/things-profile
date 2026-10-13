@@ -2,6 +2,7 @@
 
 import { ContactEnding } from "@/components/sections/contact-ending";
 import { SelectedWork } from "@/components/sections/selected-work";
+import { GraphicWork } from "@/components/sections/graphic-work";
 import { ScrollStatement } from "@/components/sections/scroll-statement";
 import { Services } from "@/components/sections/services";
 import { useCallback, useState } from "react";
@@ -35,11 +36,6 @@ export default function Home() {
           className="studio-section container"
           aria-labelledby="studio-heading"
         >
-          <div className="section-label eyebrow">
-            <span>01 / Things we believe</span>
-            <span>Studio</span>
-          </div>
-
           <div className="studio-grid">
             <h2 id="studio-heading">
               Small studio.
@@ -57,7 +53,7 @@ export default function Home() {
 
               <p>
                 We help businesses turn what makes them different into
-                brands, websites and digital experiences with a clear
+                brands, graphic design, websites and digital experiences with a clear
                 point of view.
               </p>
 
@@ -70,6 +66,7 @@ export default function Home() {
         </section>
 
         <SelectedWork />
+        <GraphicWork />
         <ScrollStatement />
         <Services />
       </main>

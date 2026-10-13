@@ -2,9 +2,10 @@
 
 import { MenuContent } from "./menu-content";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { studioContact } from "@/data/studio-contact";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Download, X } from "lucide-react";
+import { ArrowUpRight, Download, X } from "lucide-react";
 
 export type DialogView = "menu" | "project" | null;
 
@@ -16,6 +17,9 @@ type DialogProps = {
 
 function ProjectForm() {
   const [downloaded, setDownloaded] = useState(false);
+  const shareBriefHref = "mailto:" + studioContact.email +
+    "?subject=" + encodeURIComponent("Project brief — Things") +
+    "&body=" + encodeURIComponent("Hi Things,\n\nI'd like to share my project brief with you.\n\nThank you!");
 
   function downloadBrief(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -116,6 +120,7 @@ function ProjectForm() {
             <option>New website</option>
             <option>Website redesign</option>
             <option>Brand identity</option>
+            <option>Graphic design</option>
             <option>Digital product</option>
             <option>Something else</option>
           </select>
@@ -141,6 +146,17 @@ function ProjectForm() {
             ? "Your brief has been downloaded. It hasn’t been sent to Things."
             : ""}
         </p>
+        {downloaded && (
+          <div>
+            <a href={shareBriefHref} className="text-link ruled-link">
+              Email your brief <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+            <p className="project-note">
+              Attach the downloaded things-project-brief.txt file in your email
+              app, then send it to {studioContact.email}.
+            </p>
+          </div>
+        )}
       </form>
     </div>
   );

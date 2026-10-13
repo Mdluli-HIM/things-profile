@@ -129,6 +129,10 @@
   object-fit: cover;
 }
 
+.things-offer-photo[data-graphic="true"] img {
+  object-fit: contain;
+}
+
 .things-offer-mobile-description {
   display: none;
 }

@@ -74,6 +74,27 @@
   color: #171717;
 }
 
+.things-connect-phones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 24px;
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.things-connect-phones span {
+  color: #686868;
+}
+
+.things-connect-phones a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .things-connect-showcase {
   padding-top: 8px;
   overflow: hidden;
@@ -123,11 +144,14 @@
 .things-connect-socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  align-items: center;
+  gap: 8px 24px;
 }
 
-.things-connect-socials span {
-  cursor: default;
+.things-connect-bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .things-connect-page a:focus-visible {
@@ -141,7 +165,9 @@
 
 @media (hover: hover) {
   .things-connect-email:hover,
-  .things-connect-secondary:hover {
+  .things-connect-secondary:hover,
+  .things-connect-phones a:hover,
+  .things-connect-bottom a:hover {
     color: var(--things-brand-blue, #0a23fc);
   }
 
@@ -180,6 +206,15 @@
 
   .things-connect-actions a {
     font-size: 13px;
+  }
+
+  .things-connect-phones {
+    gap: 4px 20px;
+    margin-top: 16px;
+  }
+
+  .things-connect-phones span {
+    flex-basis: 100%;
   }
 
   .things-connect-showcase {

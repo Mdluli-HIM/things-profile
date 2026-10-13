@@ -6,10 +6,8 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { StudioDialog, type DialogView } from "@/components/layout/studio-dialog";
+import { studioContact } from "@/data/studio-contact";
 import "./contact-page.css";
-
-const email = "thingsinks@gmail.com";
-const phone = "+27680364445";
 
 // Prefilled contact enquiries
 const enquiry = [
@@ -26,12 +24,12 @@ const enquiry = [
 ].join("\n");
 
 const emailHref =
-  "mailto:" + email +
+  "mailto:" + studioContact.email +
   "?subject=" + encodeURIComponent("Project enquiry — Things") +
   "&body=" + encodeURIComponent(enquiry);
 
 const whatsappHref =
-  "https://wa.me/" + phone.replace(/\D/g, "") +
+  studioContact.whatsappHref +
   "?text=" + encodeURIComponent(enquiry);
 
 
@@ -54,7 +52,7 @@ export function ContactPage() {
           </h1>
 
           <a className="things-connect-email" href={emailHref}>
-            {email}
+            {studioContact.email}
           </a>
 
           <div className="things-connect-actions">
@@ -69,9 +67,13 @@ export function ContactPage() {
             >
               WhatsApp <ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="things-connect-secondary" href={"tel:" + phone}>
-              Call us <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
+          </div>
+
+          <div className="things-connect-phones" aria-label="Call Things">
+            <span>Call Things</span>
+            {studioContact.phones.map(phone => (
+              <a key={phone.href} href={phone.href}>{phone.number}</a>
+            ))}
           </div>
         </section>
 
@@ -79,11 +81,20 @@ export function ContactPage() {
 
         <footer className="things-connect-bottom">
           <p>© {new Date().getFullYear()} Things</p>
-          <div className="things-connect-socials" aria-label="Social profiles coming soon">
-            {["Instagram", "Behance", "LinkedIn"].map(label => (
-              <span key={label} role="link" aria-disabled="true">{label}</span>
+          <nav className="things-connect-socials" aria-label="Things social profiles">
+            {studioContact.socials.filter(social => social.url).map(social => (
+              <a
+                key={social.label}
+                href={social.url}
+                aria-label={social.accessibleLabel || social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.label}
+              </a>
             ))}
-          </div>
+          </nav>
+          <a href={studioContact.website}>thingsdesign.co.za</a>
         </footer>
       </main>
 

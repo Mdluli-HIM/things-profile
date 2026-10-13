@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useHeroBreeze } from "./use-hero-breeze";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
@@ -9,6 +10,7 @@ gsap.registerPlugin(useGSAP);
 
 export function Hero({ openProject }: { openProject: () => void }) {
   const ref = useRef<HTMLElement>(null);
+  useHeroBreeze(ref);
 
 
   useEffect(() => {

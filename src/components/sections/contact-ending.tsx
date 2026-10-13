@@ -2,6 +2,7 @@
 
 import { studioContact } from "@/data/studio-contact";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
@@ -13,6 +14,7 @@ import "./contact-ending.css";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const image = imageData as { src: string | null };
+const socialLinks = studioContact.socials.filter(social => social.url);
 
 export function ContactEnding({
   openProject
@@ -194,79 +196,74 @@ export function ContactEnding({
           </h2>
 
           <div className="things-ending-details">
-  <div className="things-ending-columns">
-    <div className="things-ending-about">
-      <p className="things-ending-label">Things</p>
-      <p className="things-ending-description">Independent design & development studio.</p>
-      <p>Cape Town, South Africa.</p>
-      <p>Working worldwide.</p>
+            <div className="things-ending-columns">
+              <div className="things-ending-about">
+                <p className="things-ending-label">Things</p>
+                <p className="things-ending-description">Independent design & development studio.</p>
+                <p>Cape Town, South Africa.</p>
+                <p>Working worldwide.</p>
 
-      {(studioContact.email || studioContact.phone) && (
-        <div className="things-ending-contact-links">
-          {studioContact.email && (
-            <a href={"mailto:" + studioContact.email}>{studioContact.email}</a>
-          )}
-          {studioContact.phone && (
-            <a href={"tel:" + studioContact.phone.replace(/[^+0-9]/g, "")}>
-              {studioContact.phone}
-            </a>
-          )}
-          <a
-            href={"https://wa.me/" + studioContact.phone.replace(/\D/g, "")}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chat with Things on WhatsApp"
-          >
-            WhatsApp ↗
-          </a>
-        </div>
-      )}
+                <div className="things-ending-contact-links">
+                  <a href={"mailto:" + studioContact.email}>{studioContact.email}</a>
+                  {studioContact.phones.map(phone => (
+                    <a key={phone.href} href={phone.href}>{phone.number}</a>
+                  ))}
+                  <a
+                    href={studioContact.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat with Things on WhatsApp"
+                  >
+                    WhatsApp ↗
+                  </a>
+                </div>
 
-      {studioContact.socials.some(social => social.label) && (
-        <nav className="things-ending-socials" aria-label="Things social media">
-          {studioContact.socials
-            .filter(social => social.label)
-            .map(social => (
-              <a key={social.label} href={social.url || undefined}
-                role={social.url ? undefined : "link"}
-                aria-disabled={!social.url}
-                tabIndex={social.url ? undefined : -1}
-                className={social.url ? undefined : "things-social-disabled"}
-                target="_blank" rel="noopener noreferrer">
-                {social.label}<span aria-hidden="true"> ↗</span>
-              </a>
-            ))}
-        </nav>
-      )}
-    </div>
+                {socialLinks.length > 0 && (
+                  <nav className="things-ending-socials" aria-label="Things social media">
+                    {socialLinks.map(social => (
+                      <a
+                        key={social.label}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.accessibleLabel || social.label}
+                      >
+                        {social.label}<span aria-hidden="true"> ↗</span>
+                      </a>
+                    ))}
+                  </nav>
+                )}
+              </div>
 
-    <div>
-      <p className="things-ending-label">Pages</p>
-      <nav aria-label="Footer navigation">
-  <a href="#main">Home</a>
-  <a href="/projects">Projects</a>
-  <a href="/services">Services</a>
-  <a href="#studio">About</a>
-  <a href="#contact">Contact</a>
-</nav>
-    </div>
+              <div>
+                <p className="things-ending-label">Pages</p>
+                <nav aria-label="Footer navigation">
+                  <Link href="/">Home</Link>
+                  <Link href="/projects">Projects</Link>
+                  <Link href="/projects/graphics">Graphics</Link>
+                  <Link href="/services">Services</Link>
+                  <Link href="/about">About</Link>
+                  <Link href="/contact">Contact</Link>
+                </nav>
+              </div>
 
-    <div>
-      <p className="things-ending-label">What we do</p>
-      <p>Web Applications</p>
-      <p>Mobile Applications</p>
-      <p>Design System</p>
-      <p>Websites</p>
-      <p>Brand</p>
-      <p>Creative Direction</p>
-    </div>
-  </div>
+              <div>
+                <p className="things-ending-label">What we do</p>
+                <p>Web Applications</p>
+                <p>Mobile Applications</p>
+                <p>Design System</p>
+                <p>Websites</p>
+                <p>Brand</p>
+                <p>Graphic Design</p>
+                <p>Creative Direction</p>
+              </div>
+            </div>
 
-  <div className="things-ending-bottom">
-    <p>© {new Date().getFullYear()} Things</p>
-    <a href="#main">Back to top ↑</a>
-  </div>
-</div>
+            <div className="things-ending-bottom">
+              <p>© {new Date().getFullYear()} Things</p>
+              <a href="#main">Back to top ↑</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

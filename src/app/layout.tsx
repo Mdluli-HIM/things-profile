@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.thingsdesign.co.za"),
   title: "Things — Design & Development Studio",
   description:
-    "Independent Cape Town studio working worldwide across strategy, design and development. We design digital things that matter.",
+    "Independent Cape Town studio creating graphic design, brand identities, websites and digital experiences. Working with businesses worldwide.",
   openGraph: {
     title: "Things — Design & Development Studio",
     description:
-      "Independent Cape Town studio working worldwide across strategy, design and development. We design digital things that matter.",
+      "Independent Cape Town studio creating graphic design, brand identities, websites and digital experiences. Working with businesses worldwide.",
     url: "https://www.thingsdesign.co.za",
     siteName: "Things",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Things — Design & Development Studio",
     description:
-      "Independent Cape Town studio working worldwide across strategy, design and development. We design digital things that matter.",
+      "Independent Cape Town studio creating graphic design, brand identities, websites and digital experiences. Working with businesses worldwide.",
     images: [
       {
         url: "/images/brand/things-logo.png",

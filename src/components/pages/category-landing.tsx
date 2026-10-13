@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createCategoryTransition } from "@/lib/category-transition";
 import { useCallback } from "react";
@@ -55,6 +56,16 @@ function CategoryPreview({
       <ul>
         {category.capabilities.map(item => <li key={item}>{item}</li>)}
       </ul>
+      <nav className="things-category-dialog-actions" aria-label={category.title + " next steps"}>
+        {category.id === "design" && (
+          <Link href="/projects/graphics" onNavigate={onClose}>
+            View graphic work <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        )}
+        <Link href="/contact" onNavigate={onClose}>
+          Discuss a project <ArrowUpRight size={16} aria-hidden="true" />
+        </Link>
+      </nav>
     </dialog>
   );
 }
@@ -65,7 +76,7 @@ export function CategoryLanding({ mode, covers }: { mode: "projects" | "services
   const [opening, setOpening] = useState<CategoryId | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<ReturnType<typeof createCategoryTransition> | null>(null);
-  if (!transitionRef.current) transitionRef.current = createCategoryTransition();
+  if (transitionRef.current === null) transitionRef.current = createCategoryTransition();
   const router = useRouter();
   const reduce = useReducedMotion();
   const active = workCategories.find(category => category.id === selected);

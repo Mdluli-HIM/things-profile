@@ -31,6 +31,11 @@ const services = [
     "image": "/images/services/brand.png"
   },
   {
+    "title": "Graphic Design",
+    "description": "Posters, campaign artwork and social media visuals with a clear message and a distinctive look.",
+    "image": "/images/graphics/branding-dry.png"
+  },
+  {
     "title": "Creative Direction",
     "description": "A consistent visual point of view across every touchpoint.",
     "image": "/images/services/creative-direction.png"
@@ -48,14 +53,13 @@ export function Services() {
     >
       <div className="things-offer-intro">
         <div>
-          <p className="things-offer-label">02 / Things we do</p>
           <h2 id="services-heading">Things we do.</h2>
         </div>
 
         <div className="things-offer-intro-copy">
           <p>
             We help businesses turn what makes them different into
-            brands, websites and digital experiences with a clear
+            brands, graphic design, websites and digital experiences with a clear
             point of view.
           </p>
           <a href="#contact" className="things-offer-contact">
@@ -67,7 +71,7 @@ export function Services() {
       <div
         className="things-offer-list"
         onMouseLeave={() => {
-          if (window.matchMedia("(hover: hover)").matches) {
+          if (window.matchMedia("(min-width: 901px) and (hover: hover)").matches) {
             setActive(null);
           }
         }}
@@ -84,7 +88,7 @@ export function Services() {
             data-active={active === index}
             data-accent={index % 2 === 0 ? "blue" : "red"}
             onMouseEnter={() => {
-              if (window.matchMedia("(hover: hover)").matches) {
+              if (window.matchMedia("(min-width: 901px) and (hover: hover)").matches) {
                 setActive(index);
               }
             }}
@@ -94,9 +98,13 @@ export function Services() {
               className="things-offer-trigger"
               aria-expanded={active === index}
               aria-controls={`things-offer-preview-${index}`}
-              onFocus={() => setActive(index)}
+              onFocus={() => {
+                if (window.matchMedia("(min-width: 901px) and (hover: hover)").matches) {
+                  setActive(index);
+                }
+              }}
               onClick={() => {
-                if (window.matchMedia("(hover: hover)").matches) {
+                if (window.matchMedia("(min-width: 901px) and (hover: hover)").matches) {
                   setActive(index);
                 } else {
                   setActive(current => current === index ? null : index);
@@ -114,7 +122,7 @@ export function Services() {
               className="things-offer-preview"
               aria-hidden={active !== index}
             >
-              <div className="things-offer-photo">
+              <div className="things-offer-photo" data-graphic={service.title === "Graphic Design"}>
                 <Image
                   src={service.image}
                   alt={`${service.title} — Things preview`}

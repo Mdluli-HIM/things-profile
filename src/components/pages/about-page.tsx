@@ -7,60 +7,14 @@ import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { StudioDialog, type DialogView } from "@/components/layout/studio-dialog";
+import { studioContact } from "@/data/studio-contact";
 import "./about-page.css";
-
-const services = [
-  {
-    title: "Web Applications",
-    label: "Tools with purpose",
-    description: "Interfaces that make complex tasks feel straightforward. We bring user flows, interface design and frontend development together to shape useful digital products.",
-    image: "/images/freshdash/image-1.png",
-    alt: "FreshDash storefront interface"
-  },
-  {
-    title: "Mobile Applications",
-    label: "Designed around everyday use",
-    description: "Mobile application design built around clear journeys, thoughtful interactions and the way people use a small screen. From early flows to detailed interfaces, every step has a purpose.",
-    image: "/images/freshdash/image-2.png",
-    alt: "FreshDash commerce project detail"
-  },
-  {
-    title: "Design System",
-    label: "Consistency from the start",
-    description: "A shared visual language for your product. We organise typography, colour, components and interaction states so your experience stays coherent as it grows.",
-    image: "/images/work/noir-faces/image-2.png",
-    alt: "Typography and layout in the Noir Faces project"
-  },
-  {
-    title: "Websites",
-    label: "A considered digital presence",
-    description: "Responsive websites that balance personality with clarity. We connect content, design and development to help people understand your business and take the next step.",
-    image: "/images/work/cocofizz/image-1.png",
-    alt: "CocoFizz hospitality website"
-  },
-  {
-    title: "Brand",
-    label: "Something recognisably yours",
-    description: "Visual identities and graphic design that express what makes your business different. We consider how type, colour and imagery work together across digital and print.",
-    image: "/images/work/xibelani/image-1.png",
-    alt: "Xibelani cultural fashion brand experience"
-  },
-  {
-    title: "Creative Direction",
-    label: "A clear point of view",
-    description: "A focused direction for how your brand looks and feels. We bring imagery, layout and motion into one coherent expression, with attention to the details that give it character.",
-    image: "/images/work/noir-faces/image-1.png",
-    alt: "Noir Faces editorial art direction"
-  }
-];
 
 export function AboutPage() {
   const router = useRouter();
   const root = useRef<HTMLDivElement>(null);
   const headerWrap = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<DialogView>(null);
-  const [active, setActive] = useState(0);
-  const selected = services[active];
   const openContact = () => router.push("/contact");
 
   useEffect(() => {
@@ -91,7 +45,7 @@ export function AboutPage() {
             <p className="ta-introduction">
               Things is an independent design and development studio based in
               Cape Town. We help businesses turn what makes them different into
-              brands, websites and digital experiences with a clear point of view.
+              brands, graphic design, websites and digital experiences with a clear point of view.
             </p>
           </div>
 
@@ -110,7 +64,7 @@ export function AboutPage() {
         </section>
 
         <section id="about-beliefs" className="ta-beliefs" aria-labelledby="ta-beliefs-heading">
-          <h2 className="ta-label" id="ta-beliefs-heading">01 / What we believe</h2>
+          <h2 className="things-accessible-heading" id="ta-beliefs-heading">What we believe</h2>
           <div>
             <p className="ta-statement">
               Good design starts with understanding.
@@ -126,85 +80,6 @@ export function AboutPage() {
           </div>
         </section>
 
-        <section className="ta-services" aria-labelledby="ta-services-heading">
-          <div className="ta-section-top">
-            <h2 className="ta-label" id="ta-services-heading">02 / Things we do</h2>
-            <p>From the first idea to the final interaction.</p>
-          </div>
-
-          <div className="ta-services-grid">
-            <div className="ta-service-visual">
-              <figure className="ta-service-image">
-                <Image
-                  key={selected.image}
-                  src={selected.image}
-                  alt={selected.alt}
-                  fill
-                  sizes="(max-width: 767px) 90vw, 38vw"
-                />
-              </figure>
-              <p className="ta-image-caption">A detail from our selected work.</p>
-              <Link className="ta-text-link" href="/#work">
-                Explore our work <ArrowUpRight size={17} aria-hidden="true" />
-              </Link>
-            </div>
-
-            <div className="ta-service-list">
-              {services.map((service, index) => (
-                <div className="ta-service-item" key={service.title} data-active={active === index}>
-                  <h3>
-                    <button
-                      type="button"
-                      id={"ta-service-button-" + index}
-                      aria-expanded={active === index}
-                      aria-controls={"ta-service-panel-" + index}
-                      onClick={() => setActive(index)}
-                      onFocus={() => setActive(index)}
-                      onPointerEnter={event => {
-                        if (event.pointerType === "mouse") setActive(index);
-                      }}
-                    >
-                      <span className="ta-service-kicker">
-                        {String(index + 1).padStart(2, "0")} / {service.label}
-                      </span>
-                      <span className="ta-service-title">
-                        {service.title}
-                        <ArrowUpRight size={22} aria-hidden="true" />
-                      </span>
-                    </button>
-                  </h3>
-                  <div
-                    id={"ta-service-panel-" + index}
-                    role="region"
-                    aria-labelledby={"ta-service-button-" + index}
-                    hidden={active !== index}
-                    className="ta-service-description"
-                  >
-                    {active === index && (
-                      <figure className="ta-mobile-service-image">
-                        <Image
-                          src={service.image}
-                          alt={service.alt}
-                          fill
-                          sizes="(max-width: 767px) 90vw, 1px"
-                        />
-                      </figure>
-                    )}
-                    <p>{service.description}</p>
-                    <Link
-                      href="/#work"
-                      className="ta-text-link ta-mobile-service-link"
-                    >
-                      Explore our work
-                      <ArrowUpRight size={17} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="ta-partnership" aria-labelledby="ta-partnership-heading">
           <figure className="ta-wide-image">
             <Image
@@ -215,7 +90,7 @@ export function AboutPage() {
             />
           </figure>
           <div className="ta-partnership-copy">
-            <h2 id="ta-partnership-heading" className="ta-label">03 / Working together</h2>
+            <h2 id="ta-partnership-heading" className="things-accessible-heading">Working together</h2>
             <div>
               <p className="ta-partnership-statement">
                 Your ambition.<br />
@@ -249,13 +124,28 @@ export function AboutPage() {
             <Link href="/contact">Contacts</Link>
           </nav>
           <div className="ta-footer-contact">
-            <a href="mailto:thingsinks@gmail.com">thingsinks@gmail.com</a>
-            <a href="tel:+27680364445">+27 68 036 4445</a>
+            <a href={"mailto:" + studioContact.email}>{studioContact.email}</a>
+            {studioContact.phones.map(phone => (
+              <a key={phone.href} href={phone.href}>{phone.number}</a>
+            ))}
             <p>Cape Town based.<br />Working globally.</p>
           </div>
         </div>
         <div className="ta-footer-bottom">
           <p>© {new Date().getFullYear()} Things</p>
+          <nav className="ta-footer-socials" aria-label="Things social profiles">
+            {studioContact.socials.filter(social => social.url).map(social => (
+              <a
+                key={social.label}
+                href={social.url}
+                aria-label={social.accessibleLabel || social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.label}
+              </a>
+            ))}
+          </nav>
           <a href="#main">Back to top ↑</a>
         </div>
       </footer>

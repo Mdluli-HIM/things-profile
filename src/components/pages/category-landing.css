@@ -145,7 +145,25 @@
   font-size: 13px;
   line-height: 1.6;
 }
-.things-category-dialog button:focus-visible {
+.things-category-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #d8d8d5;
+}
+.things-category-dialog-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--things-brand-blue, #0a23fc);
+  font-size: 13px;
+  line-height: 1.6;
+  text-underline-offset: 4px;
+}
+.things-category-dialog button:focus-visible,
+.things-category-dialog-actions a:focus-visible {
   outline: 2px solid var(--things-brand-blue, #0a23fc);
   outline-offset: 3px;
 }
